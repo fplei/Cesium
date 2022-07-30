@@ -1,0 +1,40 @@
+/* 地图操作盘 */
+.compass {
+    pointer-events: auto;
+    position: absolute;
+    right: 0px;
+    top: 120px;
+    width: 95px;
+    height: 95px;
+    overflow: hidden;
+}
+
+/* 地图缩放还原按钮 */
+.navigation-controls {
+    position: absolute;
+    right: 30px;
+    top: 230px;
+    width: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 300;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 比例尺 */
+.distance-legend {
+    pointer-events: auto;
+    position: absolute;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    bottom: 20px;
+    right: 0px;
+    height: 30px;
+    width: 125px;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
