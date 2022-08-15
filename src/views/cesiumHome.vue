@@ -5,6 +5,8 @@
     <entity-cluster :viewer="mapViewer"></entity-cluster>
     <tiles-feature-picking :viewer="mapViewer"></tiles-feature-picking>
     <pick-event :viewer="mapViewer"></pick-event>
+    <gantt-chart-drag :viewer="mapViewer" />
+    <highcharts-drag :viewer="mapViewer" />
   </div>
 </template>
 
@@ -13,6 +15,10 @@ import polygonLineParts from "@/components/polygonLineParts.vue"
 import entityCluster from "@/components/entityCluster.vue"
 import tilesFeaturePicking from "@/components/3DTilesFeaturePicking.vue"
 import pickEvent from "@/components/pickEvent.vue"
+// 甘特图
+import ganttChartDrag from "@/components/ganttChartDrag.vue"
+
+import highchartsDrag from "@/components/highchartsDrag.vue"
 
 export default {
   name: "cesiumHome",
@@ -25,7 +31,9 @@ export default {
     polygonLineParts,
     entityCluster,
     tilesFeaturePicking,
-    pickEvent
+    pickEvent,
+    ganttChartDrag,
+    highchartsDrag
   },
   mounted() {
     this.initCesium()

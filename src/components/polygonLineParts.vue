@@ -12,6 +12,8 @@ import { server } from "../network/api";
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
 import { polygon } from "../assets/js/polygon";
+
+
 export default {
   name: "polygonLineParts",
   props: ["viewer"],

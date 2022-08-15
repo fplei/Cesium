@@ -5,6 +5,9 @@ import store from './store'
 import 'cesium/Widgets/widgets.css'
 import ElementUI from 'element-ui'
 
+import HighchartsVue from 'highcharts-vue'
+Vue.use(HighchartsVue)
+
 import $ from 'jquery'
 window.$ = $;
 
