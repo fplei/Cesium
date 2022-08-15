@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import { server } from "../network/api";
+import { server } from "@/network/api";
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import { polygon } from "../assets/js/polygon";
+import { polygon } from "@/assets/js/polygon";
 
 
 export default {

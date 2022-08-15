@@ -70,11 +70,9 @@
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
 import { getDate } from "@/assets/js/ganttChartDrag";
-
 import Highcharts from "highcharts";
 import xrange from "highcharts/modules/xrange";
 xrange(Highcharts);
-
 import GanttElastic from "gantt-elastic";
 import GanttHeader from "gantt-elastic-header";
 import dayjs from "dayjs";

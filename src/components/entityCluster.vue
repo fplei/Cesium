@@ -13,7 +13,7 @@
 import { server } from "../network/api";
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import { entityCluster,customStyle,clearEntityCluster } from "../assets/js/entityCluster";
+import { entityCluster,customStyle,clearEntityCluster } from "@/assets/js/entityCluster";
 export default {
   name: "entityCluster",
   props: ["viewer"],

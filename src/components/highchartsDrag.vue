@@ -6,7 +6,7 @@
       >
       <el-button @click="showPolygon(false)">隐藏highcharts可拖拽的甘特图</el-button>
     </div>
-    <!-- 甘特图 -->
+    <!-- highcharts 甘特图 -->
     <div class="gantt-centent" v-show="ganttFlag">
       <div style="padding: 10px">
         <h2 style="text-align: center">Gantt echart</h2>
@@ -23,12 +23,12 @@ var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
 // 没有用到
 // import { Gantt } from "@/assets/js/highchartsGantt";
-
+//引入Highcharts 
 import Highcharts from "highcharts";
 import xrange from "highcharts/modules/xrange";
 xrange(Highcharts);
-
-import gantt from "dhtmlx-gantt"; // 引入模块
+// 引入模块
+import gantt from "dhtmlx-gantt"; 
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 // import 'dhtmlx-gantt/codebase/locale/locale_cn'  // 本地化
 
@@ -39,8 +39,8 @@ export default {
     return {
       // 设置按钮的 disabled
       submissionFlag: false,
+      // 显示隐藏 Div
       ganttFlag: false,
-
       tasks: {
         data: [
           {
@@ -96,7 +96,6 @@ export default {
     // this.updateData();
     console.log(Highcharts);
     Highcharts.setOptions({});
-
     //hightcharts
     gantt.config.xml_date = "%Y-%m-%d";
     // 在时间线上增加一行年份显示
@@ -159,7 +158,7 @@ export default {
   font-size: 12px;
 }
 
-/* 新的甘特图 */
+/* highcharts 甘特图 */
 .left-container {
   height: 600px;
 }

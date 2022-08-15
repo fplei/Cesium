@@ -17,9 +17,9 @@ import polygonLineParts from "@/components/polygonLineParts.vue"
 import entityCluster from "@/components/entityCluster.vue"
 import tilesFeaturePicking from "@/components/3DTilesFeaturePicking.vue"
 import pickEvent from "@/components/pickEvent.vue"
-// 甘特图
+// 不可拖拽甘特图
 import ganttChartDrag from "@/components/ganttChartDrag.vue"
-
+// highcharts-可拖拽甘特图
 import highchartsDrag from "@/components/highchartsDrag.vue"
 
 export default {

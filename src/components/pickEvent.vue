@@ -12,7 +12,7 @@
 <script>
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import {  } from "../assets/js/pickEvent";
+import {  } from "@/assets/js/pickEvent";
 export default {
   props: ["viewer"],
   data() {

@@ -15,7 +15,7 @@
 <script>
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import { featurePincking,removeFeaturePincking } from "../assets/js/3dTilesFeaturePicking";
+import { featurePincking,removeFeaturePincking } from "@/assets/js/3dTilesFeaturePicking";
 export default {
     name: "tilesFeaturePicking",
   props: ["viewer"],
