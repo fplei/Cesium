@@ -3,6 +3,7 @@
     custom behavior can be added using event handlers and API calls. See
     http://api.highcharts.com/gantt.
 */
+// 没有用到
 var Highcharts = require('highcharts/highstock');
 export function Gantt() {
   var today = new Date(),

@@ -2,9 +2,9 @@
   <div>
     <div class="container">
       <el-button @click="showPolygon(true)" :disabled="submissionFlag"
-        >显示highcharts甘特图</el-button
+        >显示highcharts可拖拽的甘特图</el-button
       >
-      <el-button @click="showPolygon(false)">隐藏highcharts甘特图</el-button>
+      <el-button @click="showPolygon(false)">隐藏highcharts可拖拽的甘特图</el-button>
     </div>
     <!-- 甘特图 -->
     <div class="gantt-centent" v-show="ganttFlag">
@@ -21,7 +21,8 @@
 <script>
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import { Gantt } from "@/assets/js/highchartsGantt";
+// 没有用到
+// import { Gantt } from "@/assets/js/highchartsGantt";
 
 import Highcharts from "highcharts";
 import xrange from "highcharts/modules/xrange";

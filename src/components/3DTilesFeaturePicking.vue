@@ -57,19 +57,7 @@ export default {
   justify-items: center;
 }
 
-/* #toolbar {
-  background: rgba(42, 42, 42, 0.8);
-  padding: 4px;
-  border-radius: 4px;
-}
-#toolbar input {
-  vertical-align: middle;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-#toolbar .header {
-  font-weight: bold;
-} */
+
 .cesium-infoBox-defaultTable{
   width: 500px;
   height: 500px;

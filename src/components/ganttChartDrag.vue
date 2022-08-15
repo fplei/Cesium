@@ -2,12 +2,12 @@
   <div>
     <div class="container">
       <el-button @click="showPolygon(true)" :disabled="submissionFlag"
-        >显示甘特图</el-button
+        >显示不可拖拽的甘特图</el-button
       >
-      <el-button @click="showPolygon(false)">隐藏甘特图</el-button>
+      <el-button @click="showPolygon(false)">隐藏不可拖拽的甘特图</el-button>
     </div>
     <!-- 甘特图 -->
-
+    <!-- 简易版 甘特图 （不可拖拽） -->
     <!-- <div class="gantt-centent" v-show="ganttFlag">
       <div id="chart1"></div>
       <div id="buttonGroup" class="button-row">
@@ -421,7 +421,7 @@ export default {
         this.submissionFlag = false;
       }
     },
-
+    //简易版 甘特图 （不可拖拽）
     // init() {
     //   setTimeout(function () {
     //     Highcharts.chart("chart1", {

@@ -5,7 +5,9 @@
     <entity-cluster :viewer="mapViewer"></entity-cluster>
     <tiles-feature-picking :viewer="mapViewer"></tiles-feature-picking>
     <pick-event :viewer="mapViewer"></pick-event>
+    <!-- 不可拖拽甘特图 -->
     <gantt-chart-drag :viewer="mapViewer" />
+    <!-- 可拖拽甘特图 -->
     <highcharts-drag :viewer="mapViewer" />
   </div>
 </template>
@@ -43,6 +45,7 @@ export default {
     
   },
   methods:{
+    //初始化球体参数，传值
     initCesium(){
       Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkYmQwM2EyZC03YzIwLTQxMTUtODE1MS0zNTljYTJiMTYxMmYiLCJpZCI6NDA4NDUsImlhdCI6MTYwOTI5NzE1MX0.a4YvI1mTMoI6fMuW43norCQQnhkNAcR797yrvIrwB5g";
       this.viewer = new Cesium.Viewer("cesiumContainer",{
