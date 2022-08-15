@@ -18,4 +18,4 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### highchartsDrag.vue 为甘特图
+### highchartsDrag.vue 为可拖拽的甘特图
