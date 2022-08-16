@@ -23,14 +23,20 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### highchartsDrag.vue 为甘特图
 ### 1. 下载 插件 依赖
+```
 npm install -S vue-highcharts
 npm install -S highcharts  
+```
 
+```
 // dhtmlx-gantt插件
 npm install dhtmlx-gantt --save 
+```
 
 ### 2.引入
+```
 import highcharts from 'highcharts'
 import highcharts3d from 'highcharts/highcharts-3d'
 highcharts3d(highcharts);
+```
 
