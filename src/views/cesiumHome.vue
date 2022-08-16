@@ -9,6 +9,7 @@
     <gantt-chart-drag :viewer="mapViewer" />
     <!-- 可拖拽甘特图 -->
     <highcharts-drag :viewer="mapViewer" />
+    <map-control />
   </div>
 </template>
 
@@ -21,6 +22,8 @@ import pickEvent from "@/components/pickEvent.vue"
 import ganttChartDrag from "@/components/ganttChartDrag.vue"
 // highcharts-可拖拽甘特图
 import highchartsDrag from "@/components/highchartsDrag.vue"
+// 二三维切换
+import mapControl from "@/components/mapControl.vue"
 
 export default {
   name: "cesiumHome",
@@ -36,6 +39,7 @@ export default {
     pickEvent,
     ganttChartDrag,
     highchartsDrag,
+    mapControl,
   },
   mounted() {
     this.initCesium()
