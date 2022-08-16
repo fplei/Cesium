@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="dataControl">
-            <!-- 数据统计 -->
+            <!--  -->
+
         </div>
     </div>
 </template>
@@ -48,7 +49,6 @@
   top: 10%;
   transform: translate(-50%, -50%);
   width: 65%;
-  /* height: 500px; */
   padding: 0px 15px;
   box-sizing: border-box;
   z-index: 10;
