@@ -21,6 +21,7 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+<<<<<<< HEAD
 ### highchartsDrag.vue 为甘特图
 ### 1. 下载 插件 依赖
 npm install -S vue-highcharts
@@ -34,3 +35,6 @@ import highcharts from 'highcharts'
 import highcharts3d from 'highcharts/highcharts-3d'
 highcharts3d(highcharts);
 
+=======
+### highchartsDrag.vue 为可拖拽的甘特图
+>>>>>>> 34b632a86a62e51e6bcebd10f02c6d4cf37558d8

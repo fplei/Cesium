@@ -148,7 +148,7 @@ export default {
   /* display: flex;
   flex-direction: column; */
   /* height: calc(100vh - 2px); */
-  width: 100%;
+  width: 100%; 
   position: absolute;
   bottom: 10px;
   background: rgba(17, 22, 24, 0.5);
@@ -157,7 +157,6 @@ export default {
   border-radius: 3px;
   font-size: 12px;
 }
-
 /* highcharts 甘特图 */
 .left-container {
   height: 600px;
