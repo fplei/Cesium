@@ -1,5 +1,7 @@
 # cesium-demo1
 
+这是一个 Cesium 练习的 Demo 
+
 ## Project setup
 ```
 下载依赖：
