@@ -9,7 +9,7 @@
     <!-- highcharts 甘特图 -->
     <div class="gantt-centent" v-show="ganttFlag">
       <div style="padding: 10px">
-        <h2 style="text-align: center">Gantt echart</h2>
+        <h2 style="text-align: center">我是Gantt echart哦～</h2>
         <div class="app-container">
           <div ref="gantt" class="left-container" />
         </div>
@@ -95,7 +95,6 @@ export default {
   mounted() {
     // this.updateData();
     console.log(Highcharts);
-    Highcharts.setOptions({});
     //hightcharts
     gantt.config.xml_date = "%Y-%m-%d";
     // 在时间线上增加一行年份显示
@@ -110,6 +109,7 @@ export default {
     gantt.init(this.$refs.gantt);
     // 数据解析
     gantt.parse(this.tasks);
+
   },
   methods: {
     showPolygon(val) {
@@ -161,5 +161,50 @@ export default {
 /* highcharts 甘特图 */
 .left-container {
   height: 600px;
+}
+
+/* 甘特图样式 */
+/deep/ .gantt_task_line{
+  background: pink !important;
+}
+/* 全部变色 */
+/deep/ .gantt_task_content{
+  background: red !important;
+}
+
+/* 背景色 */
+/deep/ .gantt_container, .gantt_tooltip{
+  background: none !important;
+}
+/deep/ .gantt_grid_scale{
+  background: #000;
+}
+/deep/ .gantt_task_scale{
+  background: #000;
+}
+/deep/ .gantt_task_vscroll{
+  background: #000;
+}
+/deep/ .gantt_row{
+  background: #000;
+}
+/deep/ .gantt_task_row{
+  background: #000;
+}
+
+/* 点击后的样式 */
+/deep/ .gantt_task_row.gantt_selected {
+    background-color: #fff3a1;
+}
+/* 右侧颜色 */
+/deep/ .gantt_task .gantt_task_scale .gantt_scale_cell{
+  color: white !important;
+}
+/* 左侧颜色 */
+/deep/ .gantt_grid_data .gantt_cell{
+  color: white !important;
+}
+/deep/ .gantt_grid_scale .gantt_grid_head_cell{
+  color: white !important;
 }
 </style>

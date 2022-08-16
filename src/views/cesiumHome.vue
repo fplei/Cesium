@@ -35,7 +35,7 @@ export default {
     tilesFeaturePicking,
     pickEvent,
     ganttChartDrag,
-    highchartsDrag
+    highchartsDrag,
   },
   mounted() {
     this.initCesium()

@@ -10,7 +10,7 @@
     "cesium": "1.65.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.11.4",
-    "dhtmlx-gantt": "^7.1.12",
+    "dhtmlx-gantt": "^6.3.7",
     "element-ui": "^2.15.9",
     "gantt-elastic": "^1.0.12",
     "gantt-elastic-header": "^0.1.11",
