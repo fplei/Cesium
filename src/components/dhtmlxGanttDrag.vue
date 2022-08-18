@@ -124,7 +124,9 @@ export default {
       gantt.init(this.$refs.gantt);
       // 数据解析
       gantt.parse(this.tasks);
-      
+      // 日期栏的高度 
+      gantt.config.scale_height = 60; 
+
       gantt.init(this.$refs.gantt);
       gantt.parse(this.tasks);
       //左侧是否自适应
@@ -395,10 +397,22 @@ export default {
 /deep/ .gantt_task_line {
   background: pink !important;
 }
-/* 全部变色 */
+
+/* 甘特图拖拽变色长方体 */
+/deep/ .gantt_task_progress_wrapper{
+  background: red !important;
+}
+/* 进度拖拉变色 */
+/deep/ .gantt_task_progress{
+  background: rgb(37, 13, 29) !important;
+}
+
+
+/* 全部变色 拖拉进度跟着全变变变 */
 /deep/ .gantt_task_content {
   background: red !important;
 }
+
 
 /* 背景色 */
 /deep/ .gantt_container,
