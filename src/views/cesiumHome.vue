@@ -8,7 +8,8 @@
     <!-- 不可拖拽甘特图 -->
     <gantt-chart-drag :viewer="mapViewer" />
     <!-- 可拖拽甘特图 -->
-    <highcharts-drag :viewer="mapViewer" />
+    <dhtmlx-gantt-drag :viewer="mapViewer" />
+
     <map-control />
   </div>
 </template>
@@ -21,7 +22,11 @@ import pickEvent from "@/components/pickEvent.vue"
 // 不可拖拽甘特图
 import ganttChartDrag from "@/components/ganttChartDrag.vue"
 // highcharts-可拖拽甘特图
-import highchartsDrag from "@/components/highchartsDrag.vue"
+import dhtmlxGanttDrag from "@/components/dhtmlxGanttDrag.vue"
+
+
+
+
 // 二三维切换
 import mapControl from "@/components/mapControl.vue"
 
@@ -38,7 +43,7 @@ export default {
     tilesFeaturePicking,
     pickEvent,
     ganttChartDrag,
-    highchartsDrag,
+    dhtmlxGanttDrag,
     mapControl,
   },
   mounted() {

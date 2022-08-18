@@ -51,13 +51,11 @@
   width: 65%;
   padding: 0px 15px;
   box-sizing: border-box;
-  z-index: 10;
 }
 .changeBox{
     position: absolute;
     bottom: 30px;
     left: 15px;
-    z-index: 10;
 }
 .changeBox:hover div:first-child{
     transition: all 1s;
