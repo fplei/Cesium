@@ -11,7 +11,7 @@
     <!-- dhtmlx-gantt 甘特图 -->
     <div class="gantt-centent" v-show="ganttFlag">
       <div style="padding: 10px">
-        <h2 style="text-align: center">我是Gantt echart哦～</h2>
+        <!-- <h2 style="text-align: center">我是Gantt echart哦～</h2> -->
         <div class="app-container">
           <div ref="gantt" class="left-container" />
         </div>
@@ -27,10 +27,108 @@ import "cesium/Widgets/widgets.css";
 // 引入模块
 import gantt from "dhtmlx-gantt";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
+import dayjs from "dayjs";
+// import dayjs from "_dayjs@1.11.5@dayjs";
+// import dayjs from "dayjs";
 // import 'dhtmlx-gantt/codebase/locale/locale_cn'  // 本地化
-
+let tasks = {
+  data: [
+    {
+      id: 1,
+      text: "Task #1", //任务名称
+      m_szPlanDate: "2020-12-15",
+      start_date: "2020-12-15 18:00:00",
+      end_date: "2020-12-15 21:00:00",
+      // personName: "张总",
+      // duration: 3,
+      progress: 0.6, //任务进度
+      // color: "#6BC172",
+    },
+    {
+      id: 2,
+      text: "Task #2",
+      m_szPlanDate: "2020-12-18",
+      start_date: "2020-12-18 17:30:00",
+      end_date: "2020-12-18 21:00:00",
+      // start_date: "2020-12-18",
+      // personName: "李总",
+      // duration: 6,
+      // progress: 0.4,
+      color: "#6BC172",
+    },
+  ],
+};
+let columns = [
+  {
+    id: 1,
+    label: "选择",
+    width: 80,
+    html: true,
+    name: "checked",
+    events: {
+      click({ data, column, event }) {
+        lastClick += `${data.id},`;
+      },
+    },
+  },
+  {
+    id: 10,
+    label: "任务",
+    name: "m_szTask",
+    width: 45,
+    // html:true,
+    style: {
+      "task-list-header-label": {
+        "text-align": "center",
+        width: "100%",
+      },
+      "task-list-item-value-container": {
+        "text-align": "center",
+        width: "100%",
+      },
+    },
+    // events:{
+    //   click({data, column, event}){
+    //     lastClick += `${data.id},`
+    //   }
+    // }
+  },
+  {
+    id: 2,
+    label: "日期",
+    name: "m_szPlanDate",
+    width: 100,
+  },
+  {
+    id: 13,
+    label: "开始时间",
+    name: "start_date",
+    template: function (item) {
+      return dayjs(item.start_date).format("HH:mm");
+    },
+    width: 100,
+  },
+  {
+    id: 14,
+    label: "结束时间",
+    name: "end_date",
+    template: function (item) {
+      return dayjs(item.end_date).format("HH:mm");
+    },
+    width: 100,
+  },
+];
+let weekDay = {
+  0: "周日",
+  1: "周一",
+  2: "周二",
+  3: "周三",
+  4: "周四",
+  5: "周五",
+  6: "周六",
+};
 export default {
-  name: "highchartsDrag",
+  name: "dhtmlxGanttDrag",
   props: ["viewer"],
   data() {
     return {
@@ -38,61 +136,18 @@ export default {
       submissionFlag: false,
       // 显示隐藏 Div
       ganttFlag: false,
-      tasks: {
-        data: [
-          {
-            id: 1,
-            text: "Task #1",
-            start_date: "2020-12-15",
-            personName: "张总",
-            duration: 3,
-            progress: 0.6,
-            color: "#6BC172",
-          },
-          {
-            id: 2,
-            text: "Task #2",
-            start_date: "2020-12-18",
-            personName: "李总",
-            duration: 6,
-            progress: 0.4,
-            color: "#6BC172",
-          },
-          {
-            id: 3,
-            text: "Task #2-1",
-            start_date: "2020-12-18",
-            personName: "赵总",
-            duration: 3,
-            progress: 0.2,
-            parent: 2,
-          },
-          {
-            id: 4,
-            text: "Task #2-2",
-            start_date: "2020-12-21",
-            personName: "赵总",
-            duration: 3,
-            progress: 0,
-            parent: 2,
-          },
-        ],
-        links: [
-          {
-            id: 1,
-            source: 1,
-            target: 2,
-            type: "0",
-          },
-        ],
-      },
     };
   },
 
   mounted() {
-    this.ganttInitConfig()
+    this.ganttInitConfig();
+    //初始化
+    gantt.init(this.$refs.gantt);
+    //数据解析
+    gantt.parse(tasks);
   },
   methods: {
+    
     showPolygon(val) {
       if (val) {
         this.ganttFlag = true;
@@ -108,259 +163,293 @@ export default {
         this.submissionFlag = false;
       }
     },
-    //显示时间日期等。。。
+    //初始化 config
     ganttInitConfig() {
       //日期格式化
-      gantt.config.xml_date = "%Y-%m-%d";
+      gantt.config.xml_date = "%Y-%n-%d %H-%i"; //日期格式化的匹配格式
+      gantt.config.duration_unit = "hour"
+      gantt.config.duration_step = 1
+      gantt.config.work_time = true
+      //禁用连线
+      gantt.config.show_links = false
+      //用户拖动图形改变位置
+      gantt.config.drag_move = true
+      //用户拖拽条形图上用来调整百分比按钮
+      gantt.config.drag_progress = true
+      //定义时间刻度配置
+      gantt.config.scales = [
+        {unit:"day",step:1, format:this.countDayAndWeek},
+        {unit:"hour",step:1, format:"%H"},
+        {unit:"minute",step:10, format:"%i"},
+      ]
+      gantt.config.scale_height = 23 * 3 //设置列的高度
+      gantt.config.min_column_width = 20 //设置单元格宽度
+      this.configBasicInfo()
+
+      gantt.config.columns = columns;
+
+
+
       // 在时间线上增加一行年份显示
-      gantt.config.subscales = [
-        {
-          unit: "year",
-          step: 1,
-          date: "%Y",
-        },
-      ];
-      // 初始化
-      gantt.init(this.$refs.gantt);
-      // 数据解析
-      gantt.parse(this.tasks);
-      // 日期栏的高度 
-      gantt.config.scale_height = 60; 
+    //   gantt.config.subscales = [
+    //     {
+    //       unit: "year",
+    //       step: 1,
+    //       date: "%Y",
+    //     },
+    //   ];
 
-      gantt.init(this.$refs.gantt);
-      gantt.parse(this.tasks);
-      //左侧是否自适应
-      gantt.config.autofit = true;
-      //左侧宽
-      gantt.config.grid_width = 500;
-      //取消连线
-      gantt.config.drag_links = false;
-      //只读
-      gantt.config.readonly = false;
-      //右侧显示列名
-      gantt.config.date_scale = "%Y-%m-%d";
-      //自动调整图表坐标轴区间用于适配task的长度
-      gantt.config.fit_tasks = true;
-      //弹窗宽
-      gantt.config.wide_form = false;
-      //汉化
-      gantt.locale = {
-        date: {
-          month_full: [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-          ],
-          month_short: [
-            "1月",
-            "2月",
-            "3月",
-            "4月",
-            "5月",
-            "6月",
-            "7月",
-            "8月",
-            "9月",
-            "10月",
-            "11月",
-            "12月",
-          ],
-          day_full: [
-            "星期日",
-            "星期一",
-            "星期二",
-            "星期三",
-            "星期四",
-            "星期五",
-            "星期六",
-          ],
-          day_short: ["日", "一", "二", "三", "四", "五", "六"],
-        },
-        labels: {
-          dhx_cal_today_button: "今天",
-          day_tab: "日",
-          week_tab: "周",
-          month_tab: "月",
-          new_event: "新建日程",
-          icon_save: "保存",
-          icon_cancel: "关闭",
-          icon_details: "详细",
-          icon_edit: "编辑",
-          icon_delete: "删除",
-          confirm_closing: "请确认是否撤销修改!", //Your changes will be lost, are your sure?
-          confirm_deleting: "是否删除计划?",
-          section_description: "描述:",
-          section_time: "时间范围:",
-          section_type: "类型",
-          section_text: "计划名称:",
-          section_color: "颜色:",
+    //   // 初始化
+    //   gantt.init(this.$refs.gantt);
+    //   // 数据解析
+    //   gantt.parse(this.tasks);
+    //   // 日期栏的高度
+    //   gantt.config.scale_height = 60;
 
-          /* grid columns */
+    //   gantt.init(this.$refs.gantt);
+    //   gantt.parse(this.tasks);
+    //   //左侧是否自适应
+    //   gantt.config.autofit = true;
+    //   //左侧宽
+    //   gantt.config.grid_width = 500;
+    //   //取消连线
+    //   gantt.config.drag_links = false;
+    //   //只读
+    //   gantt.config.readonly = false;
+    //   //右侧显示列名
+    //   gantt.config.date_scale = "%Y-%m-%d";
+    //   //自动调整图表坐标轴区间用于适配task的长度
+    //   gantt.config.fit_tasks = true;
+    //   //弹窗宽
+    //   gantt.config.wide_form = false;
+    //   //汉化
+    //   gantt.locale = {
+    //     date: {
+    //       month_full: [
+    //         "1",
+    //         "2",
+    //         "3",
+    //         "4",
+    //         "5",
+    //         "6",
+    //         "7",
+    //         "8",
+    //         "9",
+    //         "10",
+    //         "11",
+    //         "12",
+    //       ],
+    //       month_short: [
+    //         "1月",
+    //         "2月",
+    //         "3月",
+    //         "4月",
+    //         "5月",
+    //         "6月",
+    //         "7月",
+    //         "8月",
+    //         "9月",
+    //         "10月",
+    //         "11月",
+    //         "12月",
+    //       ],
+    //       day_full: [
+    //         "星期日",
+    //         "星期一",
+    //         "星期二",
+    //         "星期三",
+    //         "星期四",
+    //         "星期五",
+    //         "星期六",
+    //       ],
+    //       day_short: ["日", "一", "二", "三", "四", "五", "六"],
+    //     },
+    //     labels: {
+    //       dhx_cal_today_button: "今天",
+    //       day_tab: "日",
+    //       week_tab: "周",
+    //       month_tab: "月",
+    //       new_event: "新建日程",
+    //       icon_save: "保存",
+    //       icon_cancel: "关闭",
+    //       icon_details: "详细",
+    //       icon_edit: "编辑",
+    //       icon_delete: "删除",
+    //       confirm_closing: "请确认是否撤销修改!", //Your changes will be lost, are your sure?
+    //       confirm_deleting: "是否删除计划?",
+    //       section_description: "描述:",
+    //       section_time: "时间范围:",
+    //       section_type: "类型",
+    //       section_text: "计划名称:",
+    //       section_color: "颜色:",
 
-          column_text: "计划名称",
-          column_start_date: "开始时间",
-          column_duration: "持续时间",
-          column_add: "",
+    //       /* grid columns */
 
-          /* link confirmation */
+    //       column_text: "计划名称",
+    //       column_start_date: "开始时间",
+    //       column_duration: "持续时间",
+    //       column_add: "",
 
-          link: "关联",
-          confirm_link_deleting: "将被删除",
-          link_start: " (开始)",
-          link_end: " (结束)",
+    //       /* link confirmation */
 
-          type_task: "任务",
-          type_project: "项目",
-          type_milestone: "里程碑",
+    //       link: "关联",
+    //       confirm_link_deleting: "将被删除",
+    //       link_start: " (开始)",
+    //       link_end: " (结束)",
 
-          minutes: "分钟",
-          hours: "小时",
-          days: "天",
-          weeks: "周",
-          months: "月",
-          years: "年",
-        },
-      };
-      //左侧显示列名
-      gantt.config.columns = [
-        { name: "text", label: "计划名称", tree: true, width: "*" },
-        { name: "start_date", label: "开始时间", align: "center" },
-        { name: "end_date", label: "结束时间", align: "center" },
-        {
-          name: "progress",
-          label: "进度",
-          align: "center",
-          template: function (obj) {
-            return Math.floor(obj.progress * 100).toString() + "%";
-          },
-        },
-        { name: "add", label: "" },
-      ];
-      //弹出层
-      gantt.config.lightbox.sections = [
-        {
-          name: "text",
-          height: 70,
-          map_to: "text",
-          type: "textarea",
-          focus: true,
-          width: 200,
-        },
-        {
-          name: "time",
-          height: 30,
-          map_to: "auto",
-          type: "time",
-          time_format: ["%Y", "%m", "%d"],
-        },
-        {
-          name: "color",
-          height: 30,
-          map_to: "color",
-          type: "select",
-          options: [
-            { key: "#3db9d3", label: "蓝色" },
-            { key: "#33cc33", label: "绿色" },
-            { key: "#FF8247", label: "橙色" },
-            { key: "#ff6633", label: "红色" },
-          ],
-        },
-        {
-          name: "description",
-          height: 70,
-          map_to: "description",
-          type: "textarea",
-        },
-      ];
+    //       type_task: "任务",
+    //       type_project: "项目",
+    //       type_milestone: "里程碑",
 
-      //弹窗标题 计划名称
-      gantt.templates.task_text = function (start, end, task) {
-        return task.text;
-      };
-      // gantt.init(this.$refs.gantt);
-      // gantt.parse(this.tasks);
-      // let this_ = this;
-      //添加后触发
-      gantt.attachEvent("onAfterTaskAdd", function (id, item) {
-        console.log("添加后触发");
-        // this_.changeTask();
-      });
-      //移动进度后触发
-      gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
-        console.log("移动进度后触发");
-        // this_.changeTask();
-      });
-      //移动任务后触发
-      gantt.attachEvent("onAfterTaskMove", function (id, parent, tindex) {
-        console.log("移动任务后触发");
-        // this_.changeTask();
-      });
-      //删除任务后触发
-      gantt.attachEvent("onAfterTaskDelete", function (id, item) {
-        console.log("删除任务后触发");
-        // this_.changeTask();
-      });
-      //修改任务后触发
-      gantt.attachEvent("onAfterTaskUpdate", function (id, item) {
-        console.log("修改任务后触发");
-        // this_.changeTask();
-      });
-      //保存验证
-      gantt.attachEvent("onLightboxSave", function (id, item) {
-        if (!item.text) {
-          gantt.message({ type: "error", text: "请填写计划名称!" });
-          return false;
-        }
-        return true;
-      });
+    //       minutes: "分钟",
+    //       hours: "小时",
+    //       days: "天",
+    //       weeks: "周",
+    //       months: "月",
+    //       years: "年",
+    //     },
+    //   };
+    //   //左侧显示列名
+    //   gantt.config.columns = [
+    //     { name: "text", label: "计划名称", tree: true, width: "*" },
+    //     { name: "start_date", label: "开始时间", align: "center" },
+    //     { name: "end_date", label: "结束时间", align: "center" },
+    //     {
+    //       name: "progress",
+    //       label: "进度",
+    //       align: "center",
+    //       template: function (obj) {
+    //         return Math.floor(obj.progress * 100).toString() + "%";
+    //       },
+    //     },
+    //     { name: "add", label: "" },
+    //   ];
+
+    //   //弹出层
+    //   gantt.config.lightbox.sections = [
+    //     {
+    //       name: "text",
+    //       height: 70,
+    //       map_to: "text",
+    //       type: "textarea",
+    //       focus: true,
+    //       width: 200,
+    //     },
+    //     {
+    //       name: "time",
+    //       height: 30,
+    //       map_to: "auto",
+    //       type: "time",
+    //       time_format: ["%Y", "%m", "%d"],
+    //     },
+    //     {
+    //       name: "color",
+    //       height: 30,
+    //       map_to: "color",
+    //       type: "select",
+    //       options: [
+    //         { key: "#3db9d3", label: "蓝色" },
+    //         { key: "#33cc33", label: "绿色" },
+    //         { key: "#FF8247", label: "橙色" },
+    //         { key: "#ff6633", label: "红色" },
+    //       ],
+    //     },
+    //     {
+    //       name: "description",
+    //       height: 70,
+    //       map_to: "description",
+    //       type: "textarea",
+    //     },
+    //   ];
+
+    //   //弹窗标题 计划名称
+    //   gantt.templates.task_text = function (start, end, task) {
+    //     return task.text;
+    //   };
+    //   // gantt.init(this.$refs.gantt);
+    //   // gantt.parse(this.tasks);
+    //   // let this_ = this;
+    //   //添加后触发
+    //   gantt.attachEvent("onAfterTaskAdd", function (id, item) {
+    //     console.log("添加后触发");
+    //     // this_.changeTask();
+    //   });
+    //   //移动进度后触发
+    //   gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
+    //     console.log("移动进度后触发");
+    //     // this_.changeTask();
+    //   });
+    //   //移动任务后触发
+    //   gantt.attachEvent("onAfterTaskMove", function (id, parent, tindex) {
+    //     console.log("移动任务后触发");
+    //     // this_.changeTask();
+    //   });
+    //   //删除任务后触发
+    //   gantt.attachEvent("onAfterTaskDelete", function (id, item) {
+    //     console.log("删除任务后触发");
+    //     // this_.changeTask();
+    //   });
+    //   //修改任务后触发
+    //   gantt.attachEvent("onAfterTaskUpdate", function (id, item) {
+    //     console.log("修改任务后触发");
+    //     // this_.changeTask();
+    //   });
+    //   //保存验证
+    //   gantt.attachEvent("onLightboxSave", function (id, item) {
+    //     if (!item.text) {
+    //       gantt.message({ type: "error", text: "请填写计划名称!" });
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    // },
+    // changeTask() {
+    //   const taskCount = gantt.getTaskCount();
+    //   let taskData = [];
+    //   let openTask = [];
+    //   for (let i = 0; i < taskCount; i++) {
+    //     let taskOne = {};
+    //     const obj = gantt.getTaskByIndex(i);
+    //     //打开状态继续打开
+    //     if (obj.$open == true) {
+    //       openTask.push(obj.id);
+    //     }
+    //     //整理数据格式
+    //     taskOne.id = obj.id;
+    //     taskOne.text = obj.text;
+    //     // taskOne.start_date = (obj.start_date).format("YYYY-MM-DD");
+    //     // taskOne.end_date = (obj.end_date).format("YYYY-MM-DD");
+    //     taskOne.duration = obj.duration;
+    //     taskOne.progress = obj.progress;
+    //     taskOne.description = obj.description;
+    //     taskOne.color = obj.color;
+    //     if (obj.parent) {
+    //       taskOne.parent = obj.parent;
+    //     }
+    //     taskData.push(taskOne);
+    //   }
+    //   this.$props.tasks.data = taskData;
+    //   //清空数据
+    //   gantt.clearAll();
+    //   //加载
+    //   gantt.parse(this.$props.tasks);
+    //   //遍历打开，使之前打开的父级继续打开
+    //   openTask.forEach((id) => {
+    //     gantt.open(id);
+    //   });
     },
-    changeTask() {
-      const taskCount = gantt.getTaskCount();
-      let taskData = [];
-      let openTask = [];
-      for (let i = 0; i < taskCount; i++) {
-        let taskOne = {};
-        const obj = gantt.getTaskByIndex(i);
-        //打开状态继续打开
-        if (obj.$open == true) {
-          openTask.push(obj.id);
-        }
-        //整理数据格式
-        taskOne.id = obj.id;
-        taskOne.text = obj.text;
-        // taskOne.start_date = (obj.start_date).format("YYYY-MM-DD");
-        // taskOne.end_date = (obj.end_date).format("YYYY-MM-DD");
-        taskOne.duration = obj.duration;
-        taskOne.progress = obj.progress;
-        taskOne.description = obj.description;
-        taskOne.color = obj.color;
-        if (obj.parent) {
-          taskOne.parent = obj.parent;
-        }
-        taskData.push(taskOne);
-      }
-      this.$props.tasks.data = taskData;
-      //清空数据
-      gantt.clearAll();
-      //加载
-      gantt.parse(this.$props.tasks);
-      //遍历打开，使之前打开的父级继续打开
-      openTask.forEach((id) => {
-        gantt.open(id);
-      });
+    configBasicInfo(){
+      gantt.config.autoscroll = true
     },
+    countDayAndWeek(data){
+      let date = dayjs(data).date()
+      let week = dayjs(data).day()
+      return `${date} ${weekDay[week]}`
+    }
   },
 };
 </script>
+
 <style scoped>
 .container {
   position: absolute;
@@ -370,6 +459,20 @@ export default {
   align-items: center;
   justify-items: center;
   display: block;
+}
+.el-button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: rgba(17, 22, 24, 0.5);
+  border: 1px solid rgba(56, 215, 227, 0.5);
+  color: white;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+} 
+button[disabled]{
+  background: rgba(24,59,70,0.35);
+  border: 1px solid #133031;
 }
 .gantt-centent {
   /* height: 300px; */
@@ -399,20 +502,18 @@ export default {
 }
 
 /* 甘特图拖拽变色长方体 */
-/deep/ .gantt_task_progress_wrapper{
+/deep/ .gantt_task_progress_wrapper {
   background: red !important;
 }
 /* 进度拖拉变色 */
-/deep/ .gantt_task_progress{
+/deep/ .gantt_task_progress {
   background: rgb(37, 13, 29) !important;
 }
-
 
 /* 全部变色 拖拉进度跟着全变变变 */
 /deep/ .gantt_task_content {
   background: red !important;
 }
-
 
 /* 背景色 */
 /deep/ .gantt_container,

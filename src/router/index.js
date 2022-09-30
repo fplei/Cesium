@@ -10,8 +10,6 @@ export default new VueRouter({
           path: '/',
           name: 'cesiumHome',
           component: cesiumHome
-      }, 
-       
-      
+      },
   ]
 })

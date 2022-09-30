@@ -1,0 +1,131 @@
+div::-webkit-scrollbar{
+    width:5px;
+    height:5px;
+    /**/
+  }
+  div::-webkit-scrollbar-track{
+    background:#333;
+    border-radius:2px;
+  }
+  div::-webkit-scrollbar-thumb{
+    background: #00ffff;
+    border-radius:5px;
+  }
+  div::-webkit-scrollbar-thumb:hover{
+    background: #333;
+  }
+  div::-webkit-scrollbar-corner{
+    background: #179a16;
+  }
+  
+
+  /* 中间小标题 */
+.box_top {
+  top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 44.6%;
+  z-index: 999;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  width: 200px;
+  font-family: PangMenZhengDao-3;
+}
+
+.box_top img {
+  width: 100%;
+}
+
+.box_top span {
+  width: 100%;
+  font-size: 1.55rem;
+  text-align: center;
+}
+
+
+  /* 营区浏览 */
+.buildIntro{
+  position: fixed;
+  z-index: 10;
+  top: 140px;
+  left: 19px;
+}
+.buildIntro>.title{
+  width: 230px;
+  height: 47px;
+  /* background: url(../publicImg/introTitleBg.png) center no-repeat; */
+  background: rgba(24, 35, 39, 0.5);
+  border: 1px solid rgba(56, 215, 227,0.5);
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+  color: #00ffff;
+  cursor: pointer;
+}
+.buildIntro>.title>span{
+  display: block;
+  float: left;
+}
+.buildIntro>.content{
+  width: 211px;
+}
+
+/* divPoint效果 */
+.divPoint{
+  width: 400px;
+  height: 146px;
+  /* border: 1px solid red; */
+  background: url(../publicImg/kuang.png) left no-repeat;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divPoint::after{
+  content: '';
+  background: url(../publicImg/point.png);
+  background-size: 100% 100%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 22px;
+  left: -20px;
+}
+
+.divPoint .imgBox{
+  position: relative;
+  left: 98px;
+  top: 63px;
+  width: 30%;
+}
+
+.divPoint .container{
+  width: 60%;
+}
+
+.divPoint .container h2{
+  font-size: 20px;
+  margin: 6px 0;
+}
+
+.divWdPoi{
+  height: 80px;
+  background: url(../publicImg/kuangWd.png) left no-repeat;
+}
+
+.divWdPoi .imgBox{
+  position: relative;
+  left: 92px;
+  top: 25px;
+  width: 30%;
+}
+
+.divWdPoi .container h2{
+  font-size: 20px;
+  margin: 10px 0;
+}
+.average{
+  color: #07C8CE;
+}
+

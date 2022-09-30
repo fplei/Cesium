@@ -1,20 +1,22 @@
 <template>
-  <div class="container">
-    <el-button @click="showPolygon(true)" :disabled="submissionFlag"
-      >增加polygon</el-button
-    >
-    <el-button @click="showPolygon(false)">清除polygo</el-button>
+  <div>
+    <div class="container">
+      <el-button @click="showPolygon(true)" :disabled="submissionFlag"
+        >左键绘制面</el-button
+      >
+      <el-button @click="showPolygon(false)">右键结束绘制面</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
-import { polygon } from "@/assets/js/polygon";
-
-
+import Vue from 'vue';
+import DrawPolygonsUtils from "@/assets/js/DrawPolygons";
+Vue.prototype.DrawPolygonsUtils = DrawPolygonsUtils;
 export default {
-  name: "polygonLineParts",
+  name: "DrawPolygons",
   props: ["viewer"],
   data() {
     return {
@@ -22,43 +24,42 @@ export default {
       submissionFlag: false,
     };
   },
+
   mounted() {},
   methods: {
     showPolygon(val) {
       if (val) {
-        let positions = new Cesium.Cartesian3.fromDegreesArray([
-          -99.0, 30.0, -85.0, 30.0, -85.0, 40.0, -99.0, 40.0,
-        ]);
-        polygon(this.viewer, positions);
-        this.viewer.zoomTo(this.viewer);
-        console.log(this.viewer);
-
-        // 判断只点击一次，如果用户点击过 置为 disabled
-        if (this.viewer.length != 0) {
-          this.submissionFlag = true;
-        } else {
-          this.submissionFlag = false;
-        }
-      } else {
-        // 获取实体的ID
-        let polygon = this.viewer.entities.getById("polygon");
-        this.viewer.entities.remove(polygon); //按 id来清除实体
+        this.drawPolygonsUtils = new this.DrawPolygonsUtils(this.viewer);
+        this.drawPolygonsUtils.drawPolygons(this.viewer)
         
+        //将三维球定位到中国
+     　　this.drawPolygonsUtils.flyToInit();
+        // 判断只点击一次，如果用户点击过 置为 disabled
+        // if (this.viewer.length != 0) {
+        //   this.submissionFlag = true;
+        // } else {
+        //   this.submissionFlag = false;
+        // }
+      } else {
         // 如果已经清除实体，将展示实体按钮变为能点击状态
         this.submissionFlag = false;
+        
       }
     },
+    
   },
 };
 </script>
+
 <style scoped>
 .container {
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 305px;
   display: flex;
   align-items: center;
   justify-items: center;
+  display: block;
 }
 .el-button {
   margin-right: 10px;
@@ -74,5 +75,4 @@ button[disabled]{
   background: rgba(24,59,70,0.35);
   border: 1px solid #133031;
 }
-
 </style>

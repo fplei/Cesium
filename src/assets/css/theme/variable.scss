@@ -1,0 +1,280 @@
+// 定义常用颜色变量表
+$maxWidth: 1900px;
+// $minWidth: 1366px;
+$minWidth: 1280px;
+$mbgc: red; //主题背景色
+// 默认主题
+$theme-default: (
+  // 菊花loading
+  loading-color: #409eff,
+  loading-bg-color: rgba(255, 255, 255, 0.7),
+  // 白色字体颜色
+  white-color: #fff,
+  // 默认背景颜色
+  background: #fff,
+  background1: #f6f9ff,
+  // 默认边框阴影颜色
+  shadow-color: rgba(200, 218, 255, 0.5),
+  // 底衬色
+  foil-bg: #fafcff,
+  // #faf9fe,
+  // 默认字体颜色
+  font-color: #666666,
+  font-color1: #6186ff,
+  // 默认字体大小
+  font-size: 14px,
+  // 导航栏字体颜色
+  nav-font-color: #303c4f,
+  // 导航栏字体大小
+  nav-font-size: 16px,
+  // 导航栏字体小号
+  nav-font-size-small: 14px,
+  // 导航栏阴影
+  nav-shadow-color: rgba(191, 191, 191, 0.5),
+  // 主界面模块 title
+  home-title-color: #061c53,
+  home-more-color: #7a7474,
+  // 主界面模块元素背景色
+  home-elem-bg: #f6f9ff,
+  // 主界面模块元素字体颜色
+  home-ele-font-color: #4065e0,
+  // 主界面用户信息
+  home-user-info-default-color: #aaaaaa,
+  home-user-info-nickname-color: #303c4f,
+  home-user-info-userId-color: #506585,
+  home-user-info-real-name-color: #71d35a,
+  home-user-info-unreal-name-color: red,
+  home-user-info-button-color: #fff,
+  home-user-info-button-background: #4065e0,
+  home-user-info-button-hover-background: #4085e0,
+  // 详情页面
+  aside-active-background: #dbe7ff,
+  aside-active-font-color: #222222,
+  // table
+  table-border-color: #eeeeee,
+  table-striped-background: #f3f3f3,
+  // el-table 操作按钮
+  el-table-selected: #40e0c3,
+  el-table-cancel: #ff7878,
+  el-table-look: #4065e0,
+  el-table-download: #40e0c3,
+  el-table-del: #ff7878,
+  el-table-next: #2346e2,
+  el-table-background: #fff,
+  // 分页
+  pagination-button-bg: #f4f4f5,
+  pagination-button-active-bg: #4065e0,
+  el-input-background: #f7f7f7,
+  // el-tabs
+  el-tabs-item-color: #999999,
+  el-tabs-item-active-color: #666666,
+  el-tabs-border: #eeeeee,
+  el-tabs__active-bar-color: #4065e0,
+  p-text-color: #ff7878,
+  // el-button
+  el-button-font-color: #fff,
+  el-button-primary-bg: #4065e0,
+  //弹窗
+  popup-font-color: #666666,
+  popup-background: #fff,
+  // border-color
+  border-color: #4065e0,
+  border-color1: #6186ff85,
+  el-button-border-color-base: #dcdfe6,
+  el-button-border-color-active: #c6e2ff,
+  el-button-bg-color-base: #fff,
+  el-button-bg-color-active: #deeaf7,
+  // el-select
+  el-dropdown-item-bg-hover: #eff6ff,
+  el-dropdown-item-bg-selected: #eff6ff,
+  // el-input
+  input-focus-border: #409eff,
+  // el-radio
+  radio-checked: #4065e0,
+  // el-transfer
+  transfer-border: #eeeeee,
+  transfer-header-bg: #e7efff,
+  transfer-item-is_checked: #4065e0,
+  transfer-button-bg: #e6ecff,
+  transfer-button-bg_disabled: #f4f4f6
+);
+// 暗夜模式
+$theme-night: (
+  // font-color: #fff,
+  // font-size: 14px,
+  // background: rgb(102, 98, 98),
+  // 菊花loading
+  // white-color: #7c7b7b,
+  loading-color: #17abe6,
+  loading-bg-color: rgba(255, 255, 255, 0.37),
+  // 默认背景颜色
+  background: rgb(102, 98, 98),
+  background1: #383a3d,
+  background-nav: rgb(102, 98, 98),
+  // 底衬色
+  foil-bg: rgb(201, 198, 207),
+  // 默认字体颜色
+  font-color: rgba(216, 230, 221, 0.527),
+  font-color1: #b3c1f0,
+  // 默认字体大小
+  font-size: 14px,
+  // 导航栏字体颜色
+  nav-font-color: #d3d9e4,
+  // 导航栏字体大小
+  nav-font-size: 16px,
+  // 导航栏字体小号
+  nav-font-size-small: 14px,
+  // 导航栏阴影
+  nav-shadow-color: rgba(191, 191, 191, 0.5),
+  // 主界面模块 title
+  home-title-color: #313f62,
+  home-more-color: #7a7474,
+  // 主界面模块元素背景色
+  home-elem-bg: #47484d,
+  home-ele-font-color: #112157,
+  //   home-title-color: #666666,
+  // table
+  table-border-color: rgb(124, 123, 123),
+  table-striped-background: #4e4b49,
+  // el-table 操作按钮
+  el-table-selected: #40e0c3,
+  el-table-cancel: #ff7878,
+  el-table-look: #112157,
+  el-table-download: #40e0c3,
+  el-table-del: #ff7878,
+  el-table-next: #466ff5,
+  // 分页
+  pagination-button-bg: #38383a,
+  pagination-button-active-bg: #27386e,
+  // el-tabs
+  el-tabs-item-color: #999999,
+  el-tabs-item-active-color: #f6f2f2,
+  el-tabs-border: #eeeeee46,
+  el-tabs__active-bar-color: #5786f3,
+  p-text-color: #ee2e2e,
+  // el-button
+  el-button-font-color: rgb(199, 177, 177),
+  el-button-primary-bg: #1c67f1,
+  //弹窗
+  popup-font-color: #a7a1a1,
+  popup-background: rgb(134, 129, 129),
+  home-user-info-button-background: #6f8df1,
+  // border-color
+  border-color: #556599,
+  border-color1: #55659985,
+  el-button-border-color-base: #409eff,
+  el-button-border-color-active: #0d84ff,
+  el-button-bg-color-base: #409eff,
+  el-button-bg-color-active: #0d84ff,
+  // el-select
+  el-dropdown-item-bg-hover: #4a4e52,
+  el-dropdown-item-bg-selected: #4a4e52,
+  // el-input
+  input-focus-border: #5389be,
+  // el-radio
+  radio-checked: #96aefb,
+  // el-transfer
+  transfer-border: #929191,
+  transfer-header-bg: #4778dbad,
+  transfer-item-is_checked: #0a31b3,
+  transfer-button-bg: #6887f0,
+  transfer-button-bg_disabled: #7b7f8b
+);
+
+// 南京主题
+$theme-nanjing: (
+  // 菊花loading
+  loading-color: #c0e1f4,
+  // loading-bg-color: rgba(255, 255, 255, 0.9),
+  loading-bg-color: #041427ac,
+  // 白色字体颜色
+  white-color: #fff,
+  // 默认背景颜色
+  background: #041427,
+  background-nanjing: #fff,
+  background-nav:
+    linear-gradient(-180deg, #275588 0%, #1d3f65 22%, #000000 100%),
+  border-nanjing: 1px solid #0083d0,
+  background1: #f6f9ff,
+  // 默认边框阴影颜色
+  shadow-color: rgba(0, 162, 219, 0.4),
+  // 底衬色
+  foil-bg: #000,
+  // #faf9fe,
+  // 默认字体颜色
+  font-color: #ffffff,
+  font-color1: #6186ff,
+  // 默认字体大小
+  font-size: 14px,
+  // 导航栏字体颜色
+  nav-font-color: #303c4f,
+  // 导航栏字体大小
+  nav-font-size: 16px,
+  // 导航栏字体小号
+  nav-font-size-small: 14px,
+  // 导航栏阴影
+  // nav-shadow-color: rgba(191, 191, 191, 0.5),
+  nav-shadow-color: 1px 1px 4px 2px rgba(19, 118, 166, 0.34),
+  // 主界面模块 title
+  home-title-color: #cbe8ff,
+  home-more-color: #7a7474,
+  // 主界面模块元素背景色
+  home-elem-bg: #001e34,
+  // 主界面模块元素字体颜色
+  home-ele-font-color: #78c3ff,
+  // 主界面用户信息
+  home-user-info-default-color: #aaaaaa,
+  home-user-info-nickname-color: #303c4f,
+  home-user-info-userId-color: #506585,
+  home-user-info-real-name-color: #71d35a,
+  home-user-info-unreal-name-color: red,
+  home-user-info-button-color: #fff,
+  home-user-info-button-background: #041427,
+  home-user-info-button-hover-background: #0083d0,
+  // 详情页面
+  aside-active-background: #0083d0,
+  aside-active-font-color: #ffffff,
+  // table
+  table-border-color: #0083d0,
+  table-striped-background: #001e34,
+  // el-table 操作按钮
+  el-table-selected: #40e0c3,
+  el-table-cancel: #ff7878,
+  el-table-look: #78c3ff,
+  el-table-download: #40e0c3,
+  el-table-del: #ff7878,
+  el-table-next: #2346e2,
+  el-table-background: #000,
+  // 分页
+  pagination-button-bg: #f4f4f5,
+  pagination-button-active-bg: #4065e0,
+  el-input-background: #f7f7f7,
+  // el-tabs
+  el-tabs-item-color: #999999,
+  el-tabs-item-active-color: #666666,
+  el-tabs-border: #eeeeee,
+  el-tabs__active-bar-color: #4065e0,
+  p-text-color: #ff7878,
+  // el-button
+  el-button-font-color: #fff,
+  el-button-primary-bg: #4065e0,
+  //弹窗
+  popup-font-color: #fff,
+  popup-background: #fff,
+  // border-color
+  border-color: #4065e0,
+  border-color1: #6186ff85,
+  border-color-nav: 1px solid rgba(0, 131, 208, 0.6),
+  el-button-border-color-base: #0083d0,
+  el-button-border-color-active: #c6e2ff,
+  el-button-bg-color-base: #041427,
+  el-button-bg-color-active: #0083d0,
+  // el-select
+  el-dropdown-item-bg-hover: #eff6ff,
+  el-dropdown-item-bg-selected: #eff6ff,
+  // el-input
+  input-focus-border: #409eff,
+  // el-radio
+  radio-checked: #78acff,
+  
+);

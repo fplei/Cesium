@@ -1,0 +1,36 @@
+
+//定义混合指令，切换主题，将主题中到所有规则添加到 theme-map 中
+@mixin themify($themes: $themes) {
+  @each $theme-name, $map in $themes {
+    // & 表示父级元素
+    // !global 把局部变量强升为全局变量
+    // $theme-name 主题样式类名， $theme-map样式
+    .theme-#{$theme-name} & {
+      $theme-map: () !global;
+      // 循环合并键值对
+      @each $key, $value in $map {
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      // 表示包含 下面函数 themed()
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+// 调用混合指令themify(),定义规则，此处到规则会替换@content
+@mixin mytheme {
+  @include themify($themes) {
+    color: themed("font-color");
+    font-size: themed("font-size");
+    background: themed("background");
+  }
+}
+// 通过key获取map中的值
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

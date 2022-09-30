@@ -21,6 +21,10 @@ export default {
   margin: 0;
   padding: 0;
 }
+li,ol,p{
+  list-style: none;
+  font-size: 12px;
+}
 .el-button {
   margin-right: 10px;
   padding: 5px 10px;

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { server } from "../network/api";
 var Cesium = require("cesium/Cesium");
 import "cesium/Widgets/widgets.css";
 import { entityCluster,customStyle,clearEntityCluster } from "@/assets/js/entityCluster";
