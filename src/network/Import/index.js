@@ -34,7 +34,7 @@ export const server = {
    * 获取100篇文章数据（GET）http://jsonplaceholder.typicode.com/posts
    * 返回100条数据，每条内容都有帖子 ID、发贴人 ID、标题、以及简介。
    */
-   reqDataList() {
+  reqDataList() {
     return fetch(ky + "/posts");
   },
 

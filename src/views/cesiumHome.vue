@@ -1,6 +1,9 @@
 <template>
   <div class="mapview-container">
     <div id="cesiumContainer"></div>
+    <!-- 登陆 后面统一封装代码-->
+    <div class="login" @click="onLogin">登陆</div>
+
     <polygon-line-parts :viewer="mapViewer"></polygon-line-parts>
     <entity-cluster :viewer="mapViewer"></entity-cluster>
     <tiles-feature-picking :viewer="mapViewer"></tiles-feature-picking>
@@ -142,6 +145,9 @@ export default {
           break;
       }
     },
+    onLogin(){
+      this.$router.push("/login");
+    }
   },
 };
 </script>
@@ -210,5 +216,13 @@ export default {
   background-size: 115px;
   color: #fff;
   cursor: pointer;
+}
+.login{
+  position: absolute;
+  top: 8px;
+  right: 50px;
+  background: red;
+  cursor: pointer;
+  padding: 3px 10px;
 }
 </style>
