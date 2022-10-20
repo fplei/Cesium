@@ -6,7 +6,7 @@
     <button class="btn" @click="clearAllDrawn()">清空数据</button>
     <div class="tip">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="info1" name="first">
+        <el-tab-pane label="获取100篇文章数据" name="first">
           <essay-table-mange :viewer="mapViewer" />
         </el-tab-pane>
         <el-tab-pane label="info2" name="second">

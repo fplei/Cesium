@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from './login/user'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store =  new Vuex.Store({
   state: {
     count:0
   },
@@ -12,5 +13,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    user
   }
-})
+});
+export default store

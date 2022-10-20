@@ -10,11 +10,11 @@
             ref="loginForm"
             @submit.native.prevent
           >
-            <el-form-item label="" prop="account" class="elItem">
+            <el-form-item label="" prop="userName" class="elItem">
               <el-input
                 type="text"
                 autocomplete="off"
-                v-model="loginForm.account"
+                v-model="loginForm.userName"
                 prefix-icon="el-icon-user-solid"
                 placeholder="请输入用户名"
               ></el-input>
@@ -50,7 +50,7 @@
 import register from "@/components/register";
 export default {
   data() {
-    var validateAccount = (rule, value, callback) => {
+    var validateUserName = (rule, value, callback) => {
       if (value === "") {
         return callback(new Error("账号不能为空"));
       } else if (value === "admin") {
@@ -70,14 +70,14 @@ export default {
     };
     return {
       loginForm: {
-        account: "",
+        userName: "",
         password: "",
       },
       activeName: "first", //默认显示登录页面
       rules: {
-        account: [
+        userName: [
           {
-            validator: validateAccount,
+            validator: validateUserName,
             trigger: "blur",
           },
         ],
@@ -93,10 +93,20 @@ export default {
   methods: {
     //账户密码实现简单登录跳转功能 测试用
     goToLogin() {
+      // server.xx(param).then((res) => {
+      //   if (res.result_data && res.result_data.token) {
+      //     let token = res.result_data.token;
+      //     Cookies.set("Nanjing-token", token, { expires: 7 });
+      //     setTimeout(() => {
+      //       this.$router.push("/home");
+      //     }, 500);
+      //   }
+      // })
       this.$refs["loginForm"].validate((valid) => {
+        
         if (valid) {
           if (
-            this.loginForm.account != "admin" ||
+            this.loginForm.userName != "admin" ||
             this.loginForm.password != "123456"
           ) {
             this.$message.error("账号密码不正确");
@@ -104,6 +114,8 @@ export default {
           } else {
             this.$message({ message: "登陆成功", type: "success" });
             this.$router.push("/");
+            console.log(this.loginForm.userName)
+            this.$store.dispatch('saveUserInfo',this.loginForm.userName);//请求回来后，把用户信息存储到VUEX里
           }
         } else {
           this.$message.error("登陆失败");

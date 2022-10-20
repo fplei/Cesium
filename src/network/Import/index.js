@@ -46,13 +46,14 @@ export const server = {
    */
   reqDataListById(params){
     const id = params.id;
-    return fetch(ky + `/posts/${id}`)
+    return fetch(ky + `/posts/${id}`);
   },
+  
   /***添加文章
    * http://jsonplaceholder.typicode.com/posts
    * ***/
-  reqUpdateEssay(){
-    return post(ky + "/posts")
-  }
+  reqUpdateEssay(params){
+    return post(ky + "/posts",params)
+  },
 
 };

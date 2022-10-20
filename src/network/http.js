@@ -21,7 +21,7 @@ service.interceptors.request.use(
   (config) => {
     console.log(config)
   
-    // let token = Cookies.get("iwhereMapper-token");
+    // let token = Cookies.get("Cesium-token");
     // if (token) {
     //   config.headers["Authorization"] = "Bearer " + token;
     // }
@@ -140,16 +140,16 @@ export function fetch(url, params, config = {}) {
  * @param data
  * @returns {Promise}
  */
-export function post(url, data = {}, config = {}) {
+ export function post(url, data = {}, config = {}) {
   return new Promise((resolve, reject) => {
-    service.post(url, data, config).then(
-      (response) => {
-        resolve(response);
-      },
-      (err) => {
-        reject(err);
-      }
-    );
+      service.post(url, data, config).then(
+          (response) => {
+              resolve(response);
+          },
+          (err) => {
+              reject(err);
+          }
+      );
   });
 }
 

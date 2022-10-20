@@ -3,6 +3,7 @@
     <div id="cesiumContainer"></div>
     <!-- 登陆 后面统一封装代码-->
     <div class="login" @click="onLogin">登陆</div>
+    <div v-for="(item,index) in userName" :key="index">{{item.user}}</div>
 
     <polygon-line-parts :viewer="mapViewer"></polygon-line-parts>
     <entity-cluster :viewer="mapViewer"></entity-cluster>
@@ -55,6 +56,7 @@ export default {
     return {
       mapViewer: null,
       viewShow: null,
+      userName:null,  
     };
   },
   components: {
@@ -77,6 +79,8 @@ export default {
     this.initCesium();
     this.mapViewer = this.viewer;
     console.log(this.mapViewer);
+    this.userName = this.$store.state.user
+    console.log(this.userName)
   },
   methods: {
     //初始化球体参数，传值

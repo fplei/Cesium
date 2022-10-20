@@ -2,7 +2,7 @@
   <div class="essayTableMange-container">
     <div class="content">
       <ul>
-        <li>{{ dataListId.body }}</li>
+        <!-- <li>{{ dataListId.body }}</li> -->
       </ul>
     </div>
   </div>
@@ -10,7 +10,6 @@
 
 <script>
 import * as Cesium from "cesium/Cesium";
-import { server } from "@/network/Import/index";
 import Bus from "@/bus"
 export default {
   name:"essayTableMangeId",
@@ -23,23 +22,23 @@ export default {
   },
   mounted() {
     Bus.$on("essayId", (val)=> {
-      console.log(val.id)
+      // console.log(val.id)
       this.assayId = val.id
-      this.reqDataListById();
+      // this.reqDataListById();
     })
   },
   methods: {
-    reqDataListById() {
-      const params = {
-        id:this.assayId
-      };
-      server.reqDataListById(params).then((response) => {
-        this.dataListId = response;
-        console.log(this.dataListId);
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
+    // reqDataListById() {
+    //   const params = {
+    //     id:this.assayId
+    //   };
+    //   server.reqDataListById(params).then((response) => {
+    //     this.dataListId = response;
+    //     console.log(this.dataListId);
+    //   }).catch((error) => {
+    //     console.log(error);
+    //   });
+    // },
   },
 };
 </script>

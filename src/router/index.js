@@ -20,3 +20,21 @@ export default new VueRouter({
     },
   ]
 })
+
+// router.afterEach((to, from, next) => {
+//   window.scrollTo(0, 0);
+// });
+
+// router.beforeEach((to, from, next) => {
+//   let token = Cookies.get("Cesium-token")
+//   if (to.path == '/login' || token) {
+//       next()
+//   } else {
+//       // vm.toast('登录过期，请重新登陆')
+//       setTimeout(() => {
+//           next({
+//               path: '/login'
+//           })
+//       }, 500);
+//   }
+// })

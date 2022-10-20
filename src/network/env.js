@@ -11,7 +11,7 @@ if (process.env.NODE_ENV == "production") {
 } else {
     // 开发环境
     // baseUrl = "http://localhost:8089";
-    console.log("Error报错啦！")
+    // console.log("Error报错啦！")
     
 }
 export { baseUrl };
