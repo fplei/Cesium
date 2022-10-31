@@ -24,6 +24,10 @@ if (baseUrl == "http://localhost:8089") {
   dataManage = "/dataManage";
 }
 export const server = {
+
+  
+
+
   /**
    * 列表
    * @param {Object} params
@@ -52,7 +56,7 @@ export const server = {
   /***添加文章
    * http://jsonplaceholder.typicode.com/posts
    * ***/
-  reqUpdateEssay(params){
+   reqUpdateEssay(params){
     return post(ky + "/posts",params)
   },
 

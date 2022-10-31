@@ -36,6 +36,7 @@ export default {
     return {
       dataList: [],
       dataListId: [],
+      dataUpdateList:[],
       essayId: null,
       dialogVisible: false,
     };
@@ -54,8 +55,10 @@ export default {
         .then((response) => {
           this.$message.success("成功！");
           this.dataList = response;
+          console.log(this.dataList)
           this.dataList.forEach((item) => {
             this.essayId = item.id;
+            this.dataUpdateList = item
             // console.log(this.essayId);
             Bus.$emit("essayId", this.essayId);
           });
@@ -74,11 +77,18 @@ export default {
       this.reqUpdateEssay()
     },
     reqUpdateEssay() {
+      // this.reqDataList()
+      console.log(this.dataUpdateList)
+      let params = {
+        id: this.dataUpdateList.id,
+        body:this.dataUpdateList.body,
+        title:this.dataUpdateList.title,
+      };
       server
-        .reqUpdateEssay()
+        .reqUpdateEssay(params)
         .then((response) => {
+          console.log(response)
           this.$message.success("成功！");
-          this.dataList = response;
         })
         .catch((error) => {
           console.log(error);

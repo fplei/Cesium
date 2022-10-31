@@ -1,7 +1,6 @@
 import Qs from "qs";
 import axios from "axios";
 import { baseUrl } from "./env.js";
-
 import Cookies from "js-cookie";
 
 // axios.defaults.baseURL = baseUrl;
@@ -53,19 +52,23 @@ service.interceptors.request.use(
 // 响应拦截器即异常处理
 service.interceptors.response.use(
   (response) => {
+    return Promise.resolve(response.data);
+
     // 响应数据处理
-    const data = response.data;
-    if (response.status !== 200) {
-      return Promise.reject(new Error("error"));
-    } else {
-      if (response.status === 200) {
-        if (parseInt(data.code) === 200 || data.server_status === 200) {
-          return Promise.resolve(data);
-        }
-        errorHandle(data.server_status, data.server_error);
-        return Promise.resolve(response.data);
-      }
-    }
+    // const data = response.data;
+    // if (response.status !== 200) {
+    //   console.log(response.status,"1111")
+    //   return Promise.reject(new Error("error"));
+    // } else {
+    //   if (response.status === 200) {
+    //     if (parseInt(data.code) === 200 || data.server_status === 200) {
+    //       return Promise.resolve(data);
+    //     }
+    //     errorHandle(data.server_status, data.server_error);
+    //     return Promise.resolve(response.data);
+    //   }
+    // }
+    
   },
   (error) => {
     // 响应错误

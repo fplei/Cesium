@@ -17,6 +17,7 @@
     <ul class="tabUl">
       <li class="b-r" @click="listFn($event, 'animationControl')">动画</li>
       <li class="b-r" @click="listFn($event, 'measurementControl')">三维标点测距VS标点测面</li>
+      <li class="b-r" @click="listFn($event, 'dialogControl')">学习</li>
     </ul>
     <components :is="viewShow" :viewer="mapViewer" />
     <!-- <seting-control /> -->
@@ -40,7 +41,9 @@ import dhtmlxGanttDrag from "@/components/dhtmlxGanttDrag.vue";
 //动画切换效果
 import animationControl from "@/components/animationMange/animationControl.vue";
 import measurementControl from "@/components/animationMange/measurementControl.vue"
+import dialogControl from "@/components/animationMange/dialogControl.vue"
 
+import bus from "@/bus"
 // 二三维切换
 import mapControl from "@/components/mapControl.vue";
 
@@ -74,6 +77,7 @@ export default {
     DrawPolygons,
     DrawRect,
     DrawPopup,
+    dialogControl,
   },
   mounted() {
     this.initCesium();
@@ -144,6 +148,11 @@ export default {
           this.viewShow = measurementControl;
           // this.$router.push("./");
           break;
+        case "dialogControl":
+          this.viewShow = dialogControl;
+          // this.$router.push("./");
+          // bus.$emit("dialogCountCode")
+          break;
         default:
           this.viewShow = AnimatePath;
           break;
@@ -168,8 +177,8 @@ export default {
   bottom: 0;
 }
 .tabUl {
-  width: 220px;
-  height: 30px;
+  width: 235px;
+  height: 25px;
   text-align: center;
   margin-top: 7px;
   position: absolute;
@@ -181,8 +190,8 @@ export default {
 .tabUl > li {
   background: red;
   float: left;
-  line-height: 30px;
-  padding: 0 10px;
+  line-height: 25px;
+  padding: 0 5px;
   cursor: default;
   background-size: 115px;
   color: #00ffff;
@@ -194,8 +203,8 @@ export default {
 .tabUl > li.active {
   background: pink;
   float: left;
-  line-height: 30px;
-  padding: 0 10px;
+  line-height: 25px;
+  padding: 0 5px;
   cursor: default;
   background-size: 115px;
   color: #fff;
@@ -204,8 +213,8 @@ export default {
   background: rgba(17, 22, 24, 0.5);
   border: 1px solid rgba(56, 215, 227, 0.5);
   float: left;
-  line-height: 30px;
-  padding: 0 10px;
+  line-height: 25px;
+  padding: 0 5px;
   cursor: default;
   background-size: 115px;
   color: #00ffff;
@@ -214,8 +223,8 @@ export default {
 .tabUl .b-r.active {
   background: #00ffff;
   float: left;
-  line-height: 30px;
-  padding: 0 10px;
+  line-height: 25px;
+  padding: 0 5px;
   cursor: default;
   background-size: 115px;
   color: #fff;

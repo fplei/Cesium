@@ -1,19 +1,27 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import user from './login/user'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+//1.安装插件
+Vue.use(Vuex);
 
-const store =  new Vuex.Store({
+//2.创建对象
+const store = new Vuex.Store({
   state: {
-    count:0
+    counter: 1000,
   },
   mutations: {
+    //方法
+    increment(state) {
+      state.counter++
+    },
+    decrement(state) {
+      state.counter--;
+    },
   },
-  actions: {
-  },
-  modules: {
-    user
-  }
+  actions: {},
+  getters: {},
+  modules: {},
 });
-export default store
+
+//3.导出store独享
+export default store;
