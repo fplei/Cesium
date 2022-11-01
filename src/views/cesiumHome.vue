@@ -17,7 +17,7 @@
     <ul class="tabUl">
       <li class="b-r" @click="listFn($event, 'animationControl')">动画</li>
       <li class="b-r" @click="listFn($event, 'measurementControl')">三维标点测距VS标点测面</li>
-      <li class="b-r" @click="listFn($event, 'dialogControl')">学习</li>
+      <li class="b-r" @click="listFn($event, 'dialogControl')">学习Vuex</li>
     </ul>
     <components :is="viewShow" :viewer="mapViewer" />
     <!-- <seting-control /> -->
@@ -177,13 +177,13 @@ export default {
   bottom: 0;
 }
 .tabUl {
-  width: 235px;
+  /* width: 235px; */
   height: 25px;
   text-align: center;
   margin-top: 7px;
   position: absolute;
   left: 350px;
-  right: 0;
+  right: 130px;
   z-index: 20;
   font-size: 12px;
 }
