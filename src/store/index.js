@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
+//可以统一使用
+import { INCREMENT } from '@/store/mutations-types'
 
 //1.安装插件
 Vue.use(Vuex);
@@ -13,11 +15,20 @@ const store = new Vuex.Store({
       {id:11,name:'kobe',age:24},
       {id:12,name:'james',age:26},
       {id:13,name:'curry',age:16},
-    ]
+    ],
+    //定义在state中的，都会被加入中响应式系统中，响应式会监听熟悉变化
+    info:{
+      name:'kobe',
+      age:30,
+      height:1.98,
+    }
   },
   mutations: {
     //方法
-    increment(state) {
+    // increment(state) {
+    //   state.counter++
+    // },
+    [INCREMENT](state) {
       state.counter++
     },
     decrement(state) {
@@ -31,9 +42,41 @@ const store = new Vuex.Store({
     addStudent(state,stu){
       state.students.push(stu)
     },
-    
+    updateInfo(state){
+      // state.info['address'] = '洛杉矶' //增加新属性
+      state.info.name = 'coderwhy' 
+      // Vue.set(state.info,'address','洛杉矶')
+      // Vue.delete(state.info,'age')
+
+      // 错误代码，模拟异步,mutations里面不能进行异步操作
+      // setTimeout(()=>{
+      //   state.info.name = 'coderwhy'
+      // },1000)
+    },
   },
-  actions: {},
+  actions: {
+    //异步操作专用  context：上下文 --> store对象
+    // aUpdateInfo(context, payload){
+    //   setTimeout(()=>{
+    //     context.commit('updateInfo')
+    //     console.log(payload.message)
+    //     payload.success()
+    //     // console.log(payload)
+    //   },1000)
+    // },
+    //做了个中转，dispatch可以返回Promise，使用Promise
+    aUpdateInfo(context, payload){
+      return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          context.commit('updateInfo');
+          console.log(payload);
+
+          resolve('1111')
+        }, 1000)
+      })
+    }
+
+  },
   getters: {
     //平方
     powerCounter(state){

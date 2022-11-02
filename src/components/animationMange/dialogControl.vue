@@ -1,6 +1,11 @@
 //用于Vuex学习 练习使用
 <template>
   <div class="dialogControl">
+    
+    <h2>-----------App内容：info对象的内容是否是响应式-----------</h2>
+    <h3>{{$store.state.info}}</h3>
+    <el-button size="mini" @click="updateInfo">修改信息</el-button>
+
     <h2>----------------Vuex学习-----------------</h2>
     <h3>{{$store.state.counter}}</h3>
     <el-button size="mini" @click="addition">+</el-button>
@@ -15,6 +20,7 @@
     <h3>{{$store.getters.more20stuLength}}</h3>
     <p>{{$store.getters.moreAgeStu(12)}}</p>
 
+    
     <h2>-----------Hello Vuex内容-----------</h2>
     <hello-vuex />
     <!-- <hello-vuex :counter="counter" /> -->
@@ -23,6 +29,7 @@
 
 <script>
 import HelloVuex from './HelloVuex.vue'
+import {INCREMENT} from '@/store/mutations-types'
 import Bus from "@/bus";
 export default {
   name:'dialogControl',
@@ -56,24 +63,49 @@ export default {
   },
   methods: {
     addition(){
-      this.$store.commit('increment');
+      // this.$store.commit('increment');
+      this.$store.commit(INCREMENT);
     },
     subtraction(){
       this.$store.commit('decrement');
     },
     addCount(count){
       //1.普通的提交封装
-      this.$store.commit('incrementCount',count)
+      // this.$store.commit('incrementCount',count)
 
       //2.特殊的提交封装
-      // this.$store.commit({
-      //   type:'incrementCount',
-      //   count
-      // })
+      this.$store.commit({
+        type:'incrementCount',
+        count
+      })
     },
     addStudent(){
       const stu = {id:14,name:'alan',age:28}
       this.$store.commit('addStudent',stu)
+    },
+    updateInfo(){
+      // 为了让经过 actions异步, 不能这么写了
+      // this.$store.commit('updateInfo')
+      // this.$store.dispatch('aUpdateInfo','我是payload')
+      //传其他参数就麻烦了
+      // this.$store.dispatch('aUpdateInfo', () => {
+      //   console.log('里面已经完成了')
+      // })
+      //传入个大的对象  携带的和回调的写在一起了，不够优雅
+      // this.$store.dispatch('aUpdateInfo', {
+      //   message: '我是携带的信息',
+      //   success:()=>{
+      //     console.log('里面已经完成了')
+      //   }
+      // })
+
+      //回到最初了 使用 promise 返回数据，就可以在then里写东西了
+      this.$store
+      .dispatch('aUpdateInfo','我是携带的信息')
+      .then( res => {
+        console.log('里面完成了提交');
+        console.log(res);
+      })
     }
   },
 };
