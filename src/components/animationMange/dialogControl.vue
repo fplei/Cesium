@@ -1,7 +1,14 @@
 //用于Vuex学习 练习使用
 <template>
   <div class="dialogControl">
-    
+    <h2>-----------App内容：modules中的内容-----------</h2>
+    <h3>{{$store.state.a.name}}</h3>
+    <el-button size="mini" @click="updateName">修改名字</el-button>
+    <h3>{{$store.getters.fullName}}</h3>
+    <h3>{{$store.getters.fullName2}}</h3>
+    <h3>{{$store.getters.fullName3}}</h3>
+    <el-button size="mini" @click="asyncUpdateName">异步修改名字</el-button>
+
     <h2>-----------App内容：info对象的内容是否是响应式-----------</h2>
     <h3>{{$store.state.info}}</h3>
     <el-button size="mini" @click="updateInfo">修改信息</el-button>
@@ -106,6 +113,13 @@ export default {
         console.log('里面完成了提交');
         console.log(res);
       })
+    },
+    updateName(){
+      //提交也是commit()
+      this.$store.commit('updateName','lisi')
+    },
+    asyncUpdateName(){
+      this.$store.dispatch('aUpdateName')
     }
   },
 };
